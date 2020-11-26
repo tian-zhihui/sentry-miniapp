@@ -31,7 +31,7 @@ var System = /** @class */ (function () {
                     var _b = tslib_1.__read(system.split(" "), 2), systemName = _b[0], systemVersion = _b[1];
                     return tslib_1.__assign(tslib_1.__assign({}, event), { contexts: tslib_1.__assign(tslib_1.__assign({}, event.contexts), { device: {
                                 brand: brand,
-                                battery_level: batteryLevel || currentBattery || battery || NaN,
+                                battery_level: batteryLevel || currentBattery || battery || 0,
                                 model: model,
                                 screen_dpi: pixelRatio
                             }, os: {

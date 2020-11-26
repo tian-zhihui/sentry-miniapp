@@ -46,14 +46,13 @@ export class System implements Integration {
             fontSizeSetting // 支付宝小程序、 钉钉小程序、微信小程序
           } = systemInfo;
           const [systemName, systemVersion] = system.split(" ");
-
           return {
             ...event,
             contexts: {
               ...event.contexts,
               device: {
                 brand,
-                battery_level: batteryLevel || currentBattery || battery || NaN,
+                battery_level: batteryLevel || currentBattery || battery || 0,
                 model,
                 screen_dpi: pixelRatio
               },
