@@ -1,6 +1,5 @@
-import { addGlobalEventProcessor, getCurrentHub } from "@sentry/core";
 import { Event, Integration } from "@sentry/types";
-
+import { addGlobalEventProcessor, getCurrentHub } from "@sentry/core";
 import { appName as currentAppName, sdk } from "../crossPlatform";
 
 /** UserAgent */
@@ -54,7 +53,7 @@ export class System implements Integration {
               ...event.contexts,
               device: {
                 brand,
-                battery_level: batteryLevel || currentBattery || battery,
+                battery_level: batteryLevel || currentBattery || battery || NaN,
                 model,
                 screen_dpi: pixelRatio
               },

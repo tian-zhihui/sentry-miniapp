@@ -29,7 +29,7 @@ var System = /** @class */ (function () {
                     var _b = __read(system.split(" "), 2), systemName = _b[0], systemVersion = _b[1];
                     return __assign(__assign({}, event), { contexts: __assign(__assign({}, event.contexts), { device: {
                                 brand: brand,
-                                battery_level: batteryLevel || currentBattery || battery,
+                                battery_level: batteryLevel || currentBattery || battery || NaN,
                                 model: model,
                                 screen_dpi: pixelRatio
                             }, os: {
