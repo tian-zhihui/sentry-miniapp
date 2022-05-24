@@ -2,7 +2,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MiniappClient = void 0;
 var tslib_1 = require("tslib");
 var core_1 = require("@sentry/core");
-var utils_1 = require("@sentry/utils");
 var backend_1 = require("./backend");
 var version_1 = require("./version");
 /**
@@ -44,30 +43,7 @@ var MiniappClient = /** @class */ (function (_super) {
     MiniappClient.prototype.showReportDialog = function (options) {
         if (options === void 0) { options = {}; }
         // doesn't work without a document (React Native)
-        var document = utils_1.getGlobalObject().document;
-        if (!document) {
-            return;
-        }
-        if (!this._isEnabled()) {
-            utils_1.logger.error("Trying to call showReportDialog with Sentry Client is disabled");
-            return;
-        }
-        var dsn = options.dsn || this.getDsn();
-        if (!options.eventId) {
-            utils_1.logger.error("Missing `eventId` option in showReportDialog call");
-            return;
-        }
-        if (!dsn) {
-            utils_1.logger.error("Missing `Dsn` option in showReportDialog call");
-            return;
-        }
-        var script = document.createElement("script");
-        script.async = true;
-        script.src = new core_1.API(dsn).getReportDialogEndpoint(options);
-        if (options.onLoad) {
-            script.onload = options.onLoad;
-        }
-        (document.head || document.body).appendChild(script);
+        console.log('sentry-miniapp 暂未实现该方法', options);
     };
     return MiniappClient;
 }(core_1.BaseClient));

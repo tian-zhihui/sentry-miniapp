@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.XHRTransport = void 0;
 var tslib_1 = require("tslib");
-var types_1 = require("@sentry/types");
+var utils_1 = require("@sentry/utils");
 var crossPlatform_1 = require("../crossPlatform");
 var base_1 = require("./base");
 /** `XHR` based transport */
@@ -16,7 +16,7 @@ var XHRTransport = /** @class */ (function (_super) {
     XHRTransport.prototype.sendEvent = function (event) {
         var _this = this;
         var request = crossPlatform_1.sdk.request || crossPlatform_1.sdk.httpRequest;
-        return this._buffer.add(new Promise(function (resolve, reject) {
+        return this._buffer.add(function () { return new Promise(function (resolve, reject) {
             // tslint:disable-next-line: no-unsafe-any
             request({
                 url: _this.url,
@@ -27,14 +27,14 @@ var XHRTransport = /** @class */ (function (_super) {
                 },
                 success: function (res) {
                     resolve({
-                        status: types_1.Status.fromHttpCode(res.statusCode)
+                        status: utils_1.eventStatusFromHttpCode(res.statusCode)
                     });
                 },
                 fail: function (error) {
                     reject(error);
                 }
             });
-        }));
+        }); });
     };
     return XHRTransport;
 }(base_1.BaseTransport));

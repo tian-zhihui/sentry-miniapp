@@ -2,7 +2,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Transports = exports.Integrations = void 0;
 var types_1 = require("@sentry/types");
 Object.defineProperty(exports, "Severity", { enumerable: true, get: function () { return types_1.Severity; } });
-Object.defineProperty(exports, "Status", { enumerable: true, get: function () { return types_1.Status; } });
 var core_1 = require("@sentry/core");
 Object.defineProperty(exports, "addGlobalEventProcessor", { enumerable: true, get: function () { return core_1.addGlobalEventProcessor; } });
 Object.defineProperty(exports, "addBreadcrumb", { enumerable: true, get: function () { return core_1.addBreadcrumb; } });

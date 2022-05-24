@@ -45,7 +45,7 @@ var MiniappBackend = /** @class */ (function (_super) {
         if (hint && hint.event_id) {
             event.event_id = hint.event_id;
         }
-        return utils_1.SyncPromise.resolve(event);
+        return utils_1.resolvedSyncPromise(event);
     };
     /**
      * @inheritDoc
@@ -60,7 +60,7 @@ var MiniappBackend = /** @class */ (function (_super) {
         if (hint && hint.event_id) {
             event.event_id = hint.event_id;
         }
-        return utils_1.SyncPromise.resolve(event);
+        return utils_1.resolvedSyncPromise(event);
     };
     return MiniappBackend;
 }(core_1.BaseBackend));

@@ -119,7 +119,7 @@ function flush(timeout) {
     if (client) {
         return client.flush(timeout);
     }
-    return utils_1.SyncPromise.reject(false);
+    return utils_1.resolvedSyncPromise(false);
 }
 exports.flush = flush;
 /**
@@ -133,7 +133,7 @@ function close(timeout) {
     if (client) {
         return client.close(timeout);
     }
-    return utils_1.SyncPromise.reject(false);
+    return utils_1.resolvedSyncPromise(false);
 }
 exports.close = close;
 /**

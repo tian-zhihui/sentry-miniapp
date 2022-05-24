@@ -7,7 +7,7 @@ var BaseTransport = /** @class */ (function () {
     function BaseTransport(options) {
         this.options = options;
         /** A simple buffer holding all requests. */
-        this._buffer = new utils_1.PromiseBuffer(30);
+        this._buffer = utils_1.makePromiseBuffer(30);
         this.url = new core_1.API(this.options.dsn).getStoreEndpointWithUrlEncodedAuth();
     }
     /**
