@@ -1,11 +1,11 @@
 import { API } from "@sentry/core";
-import { makePromiseBuffer, SentryError } from "@sentry/utils";
+import { PromiseBuffer, SentryError } from "@sentry/utils";
 /** Base Transport class implementation */
 var BaseTransport = /** @class */ (function () {
     function BaseTransport(options) {
         this.options = options;
         /** A simple buffer holding all requests. */
-        this._buffer = makePromiseBuffer(30);
+        this._buffer = new PromiseBuffer(30);
         this.url = new API(this.options.dsn).getStoreEndpointWithUrlEncodedAuth();
     }
     /**

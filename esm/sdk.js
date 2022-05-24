@@ -1,5 +1,5 @@
 import { getCurrentHub, initAndBind, Integrations as CoreIntegrations, } from "@sentry/core";
-import { resolvedSyncPromise } from "@sentry/utils";
+import { SyncPromise } from "@sentry/utils";
 import { MiniappClient } from "./client";
 import { wrap as internalWrap } from "./helpers";
 import { GlobalHandlers, IgnoreMpcrawlerErrors, LinkedErrors, Router, System, TryCatch, } from "./integrations/index";
@@ -114,7 +114,7 @@ export function flush(timeout) {
     if (client) {
         return client.flush(timeout);
     }
-    return resolvedSyncPromise(false);
+    return SyncPromise.reject(false);
 }
 /**
  * A promise that resolves when all current events have been sent.
@@ -127,7 +127,7 @@ export function close(timeout) {
     if (client) {
         return client.close(timeout);
     }
-    return resolvedSyncPromise(false);
+    return SyncPromise.reject(false);
 }
 /**
  * Wrap code within a try/catch block so the SDK is able to capture errors.

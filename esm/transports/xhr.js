@@ -1,5 +1,5 @@
 import { __extends } from "tslib";
-import { eventStatusFromHttpCode } from '@sentry/utils';
+import { Status } from "@sentry/types";
 import { sdk } from "../crossPlatform";
 import { BaseTransport } from "./base";
 /** `XHR` based transport */
@@ -14,7 +14,7 @@ var XHRTransport = /** @class */ (function (_super) {
     XHRTransport.prototype.sendEvent = function (event) {
         var _this = this;
         var request = sdk.request || sdk.httpRequest;
-        return this._buffer.add(function () { return new Promise(function (resolve, reject) {
+        return this._buffer.add(new Promise(function (resolve, reject) {
             // tslint:disable-next-line: no-unsafe-any
             request({
                 url: _this.url,
@@ -25,14 +25,14 @@ var XHRTransport = /** @class */ (function (_super) {
                 },
                 success: function (res) {
                     resolve({
-                        status: eventStatusFromHttpCode(res.statusCode)
+                        status: Status.fromHttpCode(res.statusCode)
                     });
                 },
                 fail: function (error) {
                     reject(error);
                 }
             });
-        }); });
+        }));
     };
     return XHRTransport;
 }(BaseTransport));
