@@ -49,9 +49,11 @@ var GlobalHandlers = /** @class */ (function () {
         }
         if (!!sdk.onError) {
             var currentHub_1 = getCurrentHub();
-            sdk.onError(function (error) {
+            // https://developers.weixin.qq.com/miniprogram/dev/api/base/app/app-event/wx.onError.html
+            sdk.onError(function (err) {
                 // console.info("sentry-miniapp", error);
-                currentHub_1.captureException(new Error(error));
+                var error = typeof err === 'string' ? new Error(err) : err;
+                currentHub_1.captureException(error);
             });
         }
         this._onErrorHandlerInstalled = true;
@@ -63,9 +65,13 @@ var GlobalHandlers = /** @class */ (function () {
         }
         if (!!sdk.onUnhandledRejection) {
             var currentHub_2 = getCurrentHub();
+            // https://developers.weixin.qq.com/miniprogram/dev/api/base/app/app-event/wx.onUnhandledRejection.html
             sdk.onUnhandledRejection(function (_a) {
                 var reason = _a.reason, promise = _a.promise;
-                currentHub_2.captureException(new Error(reason), {
+                // console.log(reason, typeof reason, promise)
+                // 为什么官方文档上说 reason 是 string 类型，但是实际返回的确实 object 类型
+                var error = typeof reason === 'string' ? new Error(reason) : reason;
+                currentHub_2.captureException(error, {
                     data: promise,
                 });
             });

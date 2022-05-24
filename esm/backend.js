@@ -1,7 +1,7 @@
 import { __assign, __extends } from "tslib";
 import { BaseBackend } from "@sentry/core";
 import { Severity } from "@sentry/types";
-import { addExceptionMechanism, SyncPromise } from '@sentry/utils';
+import { addExceptionMechanism, resolvedSyncPromise } from '@sentry/utils';
 import { eventFromString, eventFromUnknownInput } from './eventbuilder';
 import { XHRTransport } from "./transports/index";
 /**
@@ -43,7 +43,7 @@ var MiniappBackend = /** @class */ (function (_super) {
         if (hint && hint.event_id) {
             event.event_id = hint.event_id;
         }
-        return SyncPromise.resolve(event);
+        return resolvedSyncPromise(event);
     };
     /**
      * @inheritDoc
@@ -58,7 +58,7 @@ var MiniappBackend = /** @class */ (function (_super) {
         if (hint && hint.event_id) {
             event.event_id = hint.event_id;
         }
-        return SyncPromise.resolve(event);
+        return resolvedSyncPromise(event);
     };
     return MiniappBackend;
 }(BaseBackend));
