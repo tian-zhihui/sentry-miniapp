@@ -1,5 +1,4 @@
-import { Event, Response } from "@sentry/types";
-import { eventStatusFromHttpCode } from '@sentry/utils';
+import { Event, Response, Status } from "@sentry/types";
 
 import { sdk } from "../crossPlatform";
 
@@ -14,7 +13,7 @@ export class XHRTransport extends BaseTransport {
     const request = sdk.request || sdk.httpRequest;
 
     return this._buffer.add(
-      () => new Promise<Response>((resolve, reject) => {
+      new Promise<Response>((resolve, reject) => {
         // tslint:disable-next-line: no-unsafe-any
         request({
           url: this.url,
@@ -25,7 +24,7 @@ export class XHRTransport extends BaseTransport {
           },
           success(res: { statusCode: number }): void {
             resolve({
-              status: eventStatusFromHttpCode(res.statusCode)
+              status: Status.fromHttpCode(res.statusCode)
             });
           },
           fail(error: object): void {

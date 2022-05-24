@@ -1,18 +1,16 @@
 export {
   Breadcrumb,
-  BreadcrumbHint,
   Request,
   SdkInfo,
   Event,
-  EventHint,
-  EventStatus,
   Exception,
   Response,
   Severity,
   StackFrame,
   Stacktrace,
+  Status,
   Thread,
-  User,
+  User
 } from "@sentry/types";
 
 export {
