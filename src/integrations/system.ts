@@ -39,9 +39,11 @@ export class System implements Integration {
             version,
             windowHeight,
             windowWidth,
+            wifiSignal, // 字节跳动小程序
             app, // 支付宝小程序
             appName, // 字节跳动小程序
-            fontSizeSetting, // 支付宝小程序、 钉钉小程序、微信小程序
+            storage, // 支付宝小程序、 钉钉小程序
+            fontSizeSetting // 支付宝小程序、 钉钉小程序、微信小程序
           } = systemInfo;
           const [systemName, systemVersion] = system.split(" ");
           return {
@@ -68,9 +70,10 @@ export class System implements Integration {
                 version,
                 windowHeight,
                 windowWidth,
+                wifiSignal,
                 fontSizeSetting,
-                app: app || appName || currentAppName,
-                ...systemInfo,
+                storage,
+                app: app || appName || currentAppName
               }
             }
           };
